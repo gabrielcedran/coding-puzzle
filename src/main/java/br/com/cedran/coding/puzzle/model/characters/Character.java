@@ -6,8 +6,8 @@ public abstract class Character {
 
     private String name;
     private TextColors color;
-    private Long numberOfSteps;
-    private Long experience;
+    private Long steps = 0l;
+    private Long experience = 0l;
 
     public String getName() {
         return name;
@@ -25,12 +25,16 @@ public abstract class Character {
         this.color = color;
     }
 
-    public Long getNumberOfSteps() {
-        return numberOfSteps;
+    public Long getSteps() {
+        return steps;
     }
 
-    public void setNumberOfSteps(Long numberOfSteps) {
-        this.numberOfSteps = numberOfSteps;
+    public void setSteps(Long steps) {
+        this.steps = steps;
+    }
+
+    public void addStep() {
+        this.steps++;
     }
 
     public Long getExperience() {

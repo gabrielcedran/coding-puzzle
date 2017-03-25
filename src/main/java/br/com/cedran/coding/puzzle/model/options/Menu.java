@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public enum Menu {
 
-    NEW_GAME("New Game", 1), LOAD_GAME("Load Game", 2), QUIT_("Exit", 3);
+    NEW_GAME("New Game", 1), LOAD_GAME("Load Game", 2), QUIT_GAME("Exit", 3);
 
     Menu(String description, Integer number) {
         this.description = description;

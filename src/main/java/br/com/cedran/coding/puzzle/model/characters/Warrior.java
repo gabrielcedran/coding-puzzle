@@ -2,10 +2,8 @@ package br.com.cedran.coding.puzzle.model.characters;
 
 public class Warrior extends Character {
 
-    @Override
-    public String[] getDrawing() {
     // @formatter:off
-    return new String[] {
+    private String[] drawing = new String[] {
             "                   _.--.    .--._                   ",
             "                 .\"  .\"      \".  \".                 ",
             "                ;  .\"    /\\    \".  ;                ",
@@ -26,6 +24,10 @@ public class Warrior extends Character {
             ":      \\  \\  \\   \\                /   /  /  /      :"
     };
     // @formatter:on
+
+    @Override
+    public String[] getDrawing() {
+        return drawing;
     }
 
 }

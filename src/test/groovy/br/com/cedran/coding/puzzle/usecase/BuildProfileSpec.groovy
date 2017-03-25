@@ -1,6 +1,5 @@
 package br.com.cedran.coding.puzzle.usecase
 
-import br.com.cedran.coding.puzzle.gateway.input.Keyboard
 import br.com.cedran.coding.puzzle.model.characters.Character
 import br.com.cedran.coding.puzzle.model.characters.Warrior
 import br.com.cedran.coding.puzzle.model.options.TextColors
@@ -8,12 +7,11 @@ import br.com.cedran.coding.puzzle.model.options.TextColors
 class BuildProfileSpec extends BaseSpec {
 
     BuildProfile buildProfile
-    Keyboard keyboard
     Character character
 
     def setup() {
-        keyboard = Mock(Keyboard)
         character = new Warrior()
+        character.drawing = ["character drawing"]
         buildProfile = new BuildProfile(screen, keyboard, character)
     }
 
@@ -26,8 +24,10 @@ class BuildProfileSpec extends BaseSpec {
         when: "the build profile is started"
         buildProfile.start()
 
-        then: "the message 'Which color would you like your character to have?' is displayed"
-        screenMessages[0] == "Which color would you like your character to have?"
+        then: "the character drawing is displayed"
+        screenMessages[0] == "character drawing"
+        and: "the message 'Which color would you like your character to have?' is displayed"
+        screenMessages[1] == "Which color would you like your character to have?"
     }
 
     def "Character color selection"() {
@@ -37,7 +37,7 @@ class BuildProfileSpec extends BaseSpec {
         keyboard.readInteger() >> 1
 
         when: "the build profile is started"
-        UseCase useCase = buildProfile.start()
+        Scenario useCase = buildProfile.start()
 
         then: "the color red is set to the character"
         character.color == TextColors.RED
@@ -52,11 +52,13 @@ class BuildProfileSpec extends BaseSpec {
         keyboard.readString() >> "Cedran"
 
         when: "the build profile is started"
-        UseCase useCase = buildProfile.start()
+        Scenario useCase = buildProfile.start()
 
-        then: "the messages 'The color of you character seems really good!' and 'What about giving it a nickname?' are displayed"
-        screenMessages[0] == "The color of you character seems really good!"
-        screenMessages[1] == "What about giving it a nickname?"
+        then: "the character drawing is displayed"
+        screenMessages[0] == "character drawing"
+        and: "the messages 'The color of you character seems really good!' and 'What about giving it a nickname?' are displayed"
+        screenMessages[1] == "The color of you character seems really good!"
+        screenMessages[2] == "What about giving it a nickname?"
         and: "the nickname 'Cedran' is set to the character"
         character.name == "Cedran"
         and: "the uc BuildProfile is returned"
@@ -69,11 +71,13 @@ class BuildProfileSpec extends BaseSpec {
         character.name = "Cedran"
 
         when: "the build profile is started"
-        UseCase useCase = buildProfile.start()
+        Scenario useCase = buildProfile.start()
 
-        then: "the messages 'The color of you character seems really good!' and 'What about giving it a nickname?' are displayed"
-        screenMessages[0] == "Hello brave warrior Cedran. Are you ready to start your journey?"
+        then: "the character drawing is displayed"
+        screenMessages[0] == "character drawing"
+        and: "the messages 'The color of you character seems really good!' and 'What about giving it a nickname?' are displayed"
+        screenMessages[1] == "Hello brave warrior Cedran. Are you ready to start your journey?"
         and: "the UC ExploreScenario is returned"
-        useCase instanceof ExploreScenario
+        useCase instanceof Tutorial
     }
 }

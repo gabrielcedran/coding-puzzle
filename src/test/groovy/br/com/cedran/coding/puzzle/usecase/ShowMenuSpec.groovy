@@ -1,14 +1,10 @@
 package br.com.cedran.coding.puzzle.usecase
 
-import br.com.cedran.coding.puzzle.gateway.input.Keyboard
-
 class ShowMenuSpec extends BaseSpec {
 
     ShowMenu showMenu
-    Keyboard keyboard
 
     def setup() {
-        keyboard = Mock(Keyboard)
         showMenu = new ShowMenu(screen, keyboard)
     }
 
@@ -35,7 +31,7 @@ class ShowMenuSpec extends BaseSpec {
         keyboard.readInteger() >> 1
 
         when: "show menu executes"
-        UseCase useCase = showMenu.start()
+        Scenario useCase = showMenu.start()
 
         then: "the build profile screen is returned"
         useCase instanceof BuildProfile
@@ -47,7 +43,7 @@ class ShowMenuSpec extends BaseSpec {
         keyboard.readInteger() >> 3
 
         when: "show menu executes"
-        UseCase useCase = showMenu.start()
+        Scenario useCase = showMenu.start()
 
         then: "the build profile screen is returned"
         useCase == null
@@ -59,7 +55,7 @@ class ShowMenuSpec extends BaseSpec {
         keyboard.readInteger() >> -1
 
         when: "show menu executes"
-        UseCase useCase = showMenu.start()
+        Scenario useCase = showMenu.start()
 
         then: "the build profile screen is returned"
         useCase instanceof ShowMenu

@@ -3,6 +3,8 @@ package br.com.cedran.coding.puzzle.gateway.input;
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertThat;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Scanner;
 
 import org.junit.Test;
@@ -46,9 +48,25 @@ public class KeyboardTest {
     }
 
     @Test
-    public void waitAnyInputTest() {
-        // GIVEN The user type will press Enter
-        Mockito.when(scanner.next()).thenReturn("\\n");
+    public void waitAnyInputTest() throws IOException {
+        // GIVEN The user type press any key
+        InputStream printStream = Mockito.mock(InputStream.class);
+        System.setIn(printStream);
+        Mockito.when(printStream.read()).thenReturn(1);
+
+        // WHEN the keyboard tries to read the input
+        keyboard.waitAnyInput();
+
+        // THEN the processing finishes
+
+    }
+
+    @Test
+    public void exceptionWhileWaitAnyInputTest() throws IOException {
+        // GIVEN The user type press any key
+        InputStream printStream = Mockito.mock(InputStream.class);
+        System.setIn(printStream);
+        Mockito.when(printStream.read()).thenThrow(new IOException());
 
         // WHEN the keyboard tries to read the input
         keyboard.waitAnyInput();

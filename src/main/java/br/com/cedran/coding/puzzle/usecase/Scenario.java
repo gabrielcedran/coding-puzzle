@@ -3,17 +3,17 @@ package br.com.cedran.coding.puzzle.usecase;
 import br.com.cedran.coding.puzzle.gateway.InputGateway;
 import br.com.cedran.coding.puzzle.gateway.OutputGateway;
 
-public abstract class UseCase {
+public abstract class Scenario {
 
     OutputGateway output;
     InputGateway input;
 
-    UseCase(OutputGateway output, InputGateway input) {
+    Scenario(OutputGateway output, InputGateway input) {
         this.output = output;
         this.input = input;
     }
 
-    public abstract UseCase start();
+    public abstract Scenario start();
 
     Integer obtainInteger() {
         output.print("Type one option: ");

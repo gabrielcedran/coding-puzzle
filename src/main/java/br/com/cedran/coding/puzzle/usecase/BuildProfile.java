@@ -5,7 +5,7 @@ import br.com.cedran.coding.puzzle.gateway.OutputGateway;
 import br.com.cedran.coding.puzzle.model.characters.Character;
 import br.com.cedran.coding.puzzle.model.options.TextColors;
 
-public class BuildProfile extends UseCase {
+public class BuildProfile extends Scenario {
 
     private Character character;
 
@@ -15,13 +15,13 @@ public class BuildProfile extends UseCase {
     }
 
     @Override
-    public UseCase start() {
+    public Scenario start() {
         output.clear();
         output.print(TextColors.RESET);
 
         output.print(character.getColor(), character.getDrawing());
 
-        UseCase nextUseCase = new BuildProfile(this.output, this.input, this.character);
+        Scenario nextScenario = new BuildProfile(this.output, this.input, this.character);
         if (character.getColor() == null) {
 
             output.println("Which color would you like your character to have?");
@@ -40,10 +40,10 @@ public class BuildProfile extends UseCase {
         } else {
             output.println("Hello brave warrior " + character.getName() + ". Are you ready to start your journey?");
             this.waitAnyInput();
-            nextUseCase = new ExploreScenario(this.output, this.input, this.character);
+            nextScenario = new Tutorial(this.output, this.input, this.character);
         }
 
-        return nextUseCase;
+        return nextScenario;
     }
 
     private void verifyOption(Integer option) {
