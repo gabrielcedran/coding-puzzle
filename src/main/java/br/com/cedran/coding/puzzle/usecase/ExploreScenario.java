@@ -5,6 +5,7 @@ import java.util.Random;
 import br.com.cedran.coding.puzzle.gateway.InputGateway;
 import br.com.cedran.coding.puzzle.gateway.OutputGateway;
 import br.com.cedran.coding.puzzle.model.characters.Character;
+import br.com.cedran.coding.puzzle.model.creatures.MonsterFactory;
 import br.com.cedran.coding.puzzle.model.options.Movements;
 
 public class ExploreScenario extends Scenario {
@@ -37,8 +38,8 @@ public class ExploreScenario extends Scenario {
         Movements movement = Movements.getByKey(option);
         if (movement != null) {
             character.addStep();
-            if (random.nextInt(10) == 9) {
-                return new Battle(this.output, this.input);
+            if (random.nextInt(9) == 1) {
+                return new Battle(this.output, this.input, this.random, this.character, new MonsterFactory());
             } else {
                 return new ExploreScenario(this.output, this.input, this.character, movement, this.random);
             }

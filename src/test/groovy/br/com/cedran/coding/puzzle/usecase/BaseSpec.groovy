@@ -15,7 +15,7 @@ class BaseSpec extends Specification {
         keyboard = Mock(Keyboard)
         screen.println(_, _) >> { args -> screenMessages.add(args[1]) }
         screen.println(_) >> { args -> screenMessages.add(args[0]) }
-        screen.print(String) >> { args -> screenMessages.add(args[0]) }
+        screen.print(_ as String) >> { args -> screenMessages.add(args[0]) }
         screen.print(_, _) >> { args -> screenMessages.addAll(args[1]) }
     }
 

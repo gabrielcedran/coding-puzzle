@@ -53,7 +53,7 @@ class TutorialSpec extends BaseSpec {
         screenMessages[4] == Movements.BACKWARD.key + " - to go backward"
         screenMessages[5] == Movements.LEFT.key + " - to go to the left"
         screenMessages[6] == Movements.RIGHT.key + " - to go to the right"
-        screenMessages[7] == "If you find any monster use " + Actions.ATTACK.key + " to attack and  " + Actions.DEFEND.key + " to defend"
+        screenMessages[7] == "If you find any monster use " + Actions.ATTACK.key + " to attack"
         screenMessages[8] == "If you want to go back to menu press Q"
         screenMessages[9] == "After select a movement, press ENTER"
         screenMessages[10] == "If you type more than one option, that movement will be discarded"

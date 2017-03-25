@@ -41,7 +41,11 @@ public abstract class Character {
         return experience;
     }
 
-    public void setExperience(Long experience) {
+    public void increaseExperience(Long points) {
+        this.experience += points;
+    }
+
+    void setExperience(Long experience) {
         this.experience = experience;
     }
 

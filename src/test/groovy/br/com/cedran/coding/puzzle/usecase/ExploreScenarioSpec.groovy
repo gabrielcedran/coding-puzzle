@@ -57,11 +57,13 @@ class ExploreScenarioSpec extends BaseSpec {
         useCase instanceof ExploreScenario
     }
 
-    def "Move backwards"() {
+    def "Move backwards and find a monster"() {
         given: "the user selected in the previous scene the key 'S'"
         exploreScenario.lastMovement = Movements.BACKWARD
-        and: "he will select the key 'A' for the next scene"
-        keyboard.readString() >> "A"
+        and: "he will select the key 'S' for the next scene"
+        keyboard.readString() >> "S"
+        and: "the next steps find a monster"
+        random.nextInt(_) >> 1
         and: "the character contains 1000 steps and 1 point of experience"
         character.steps = 1000
         character.experience = 1
@@ -78,7 +80,7 @@ class ExploreScenarioSpec extends BaseSpec {
         and: "the number of experience does change"
         character.experience == 1l
         and: "the next screen returned is explore scenario"
-        useCase instanceof ExploreScenario
+        useCase instanceof Battle
     }
 
     def "Move left"() {

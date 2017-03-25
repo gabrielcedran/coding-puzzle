@@ -3,7 +3,7 @@ package br.com.cedran.coding.puzzle.model.options;
 import java.util.Arrays;
 
 public enum Actions {
-    ATTACK("Attack", "K"), DEFEND("Attack", "D");
+    ATTACK("Attack", "A");
 
     Actions(String description, String key) {
         this.description = description;
