@@ -26,8 +26,8 @@ public class Explore extends Scenario {
     }
 
     @Override
-    public Scenario start() {
-        output.clear();
+    public Scenario execute() {
+
         output.print(character.getColor(), character.getDrawing());
         if (lastMovement != null) {
             output.println("Number of steps: " + character.getSteps() + " | Experience: " + character.getExperience() + " | Moving " + lastMovement.getDescription());

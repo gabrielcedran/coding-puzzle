@@ -32,9 +32,7 @@ public class Battle extends Scenario {
     }
 
     @Override
-    public Scenario start() {
-
-        output.clear();
+    public Scenario execute() {
 
         handleMonster();
 
@@ -82,8 +80,8 @@ public class Battle extends Scenario {
         for (int i = 0; i < emptyCols; i++) {
             output.print(" ");
         }
-        output.print(TextColors.RESET);
         output.println("]");
+        output.print(TextColors.RESET);
     }
 
     private void defineBarColor(Double percentage) {

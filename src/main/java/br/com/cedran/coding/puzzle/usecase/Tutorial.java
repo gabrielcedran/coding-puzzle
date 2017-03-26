@@ -20,10 +20,7 @@ public class Tutorial extends Scenario {
     }
 
     @Override
-    public Scenario start() {
-        output.clear();
-        output.print(TextColors.RESET);
-
+    public Scenario execute() {
         output.print(character.getColor(), character.getDrawing());
         if (this.character.getSteps() == 0) {
             output.println("Before you start, here are some tips:");

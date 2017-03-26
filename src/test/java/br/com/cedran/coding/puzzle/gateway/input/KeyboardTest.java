@@ -1,7 +1,9 @@
 package br.com.cedran.coding.puzzle.gateway.input;
 
 import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.nullValue;
 import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.when;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -26,7 +28,7 @@ public class KeyboardTest {
     @Test
     public void readStringTest() {
         // GIVEN the user will type Hello
-        Mockito.when(scanner.next()).thenReturn("Hello");
+        when(scanner.next()).thenReturn("Hello");
 
         // WHEN the keyboard tries to read the input
         String text = keyboard.readString();
@@ -38,7 +40,7 @@ public class KeyboardTest {
     @Test
     public void readIntegerTest() {
         // GIVEN The user will type 1
-        Mockito.when(scanner.nextInt()).thenReturn(1);
+        when(scanner.next()).thenReturn("1");
 
         // WHEN the keyboard tries to read the input
         Integer input = keyboard.readInteger();
@@ -48,11 +50,23 @@ public class KeyboardTest {
     }
 
     @Test
+    public void readInvalidIntegerTest() {
+        // GIVEN The user will type 1
+        when(scanner.next()).thenReturn("A");
+
+        // WHEN the keyboard tries to read the input
+        Integer input = keyboard.readInteger();
+
+        // THEN the text returned is "Hello"
+        assertThat("Number returned", input, nullValue());
+    }
+
+    @Test
     public void waitAnyInputTest() throws IOException {
         // GIVEN The user type press any key
         InputStream printStream = Mockito.mock(InputStream.class);
         System.setIn(printStream);
-        Mockito.when(printStream.read()).thenReturn(1);
+        when(printStream.read()).thenReturn(1);
 
         // WHEN the keyboard tries to read the input
         keyboard.waitAnyInput();
@@ -66,7 +80,7 @@ public class KeyboardTest {
         // GIVEN The user type press any key
         InputStream printStream = Mockito.mock(InputStream.class);
         System.setIn(printStream);
-        Mockito.when(printStream.read()).thenThrow(new IOException());
+        when(printStream.read()).thenThrow(new IOException());
 
         // WHEN the keyboard tries to read the input
         keyboard.waitAnyInput();

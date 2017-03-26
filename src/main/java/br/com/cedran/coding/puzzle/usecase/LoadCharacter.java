@@ -18,9 +18,7 @@ public class LoadCharacter extends Scenario {
     }
 
     @Override
-    public Scenario start() {
-        output.clear();
-        output.print(TextColors.RESET);
+    public Scenario execute() {
 
         Scenario nextScenario = null;
 

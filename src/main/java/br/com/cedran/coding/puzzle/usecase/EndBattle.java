@@ -26,14 +26,12 @@ public class EndBattle extends Scenario {
     }
 
     @Override
-    public Scenario start() {
-        output.clear();
-
+    public Scenario execute() {
         character.increaseExperience(monster.getExperience());
         saveGateway.saveCharacter(character);
 
         output.print(TextColors.YELLOW, message);
-        output.println("You just defeated a " + monster.getName() + " and earned " + monster.getExperience());
+        output.println("You just defeated a " + monster.getName() + " and earned " + monster.getExperience() + " points!");
         output.println("Press any key to start exploring again...");
         input.waitAnyInput();
 

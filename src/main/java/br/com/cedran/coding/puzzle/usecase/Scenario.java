@@ -2,6 +2,7 @@ package br.com.cedran.coding.puzzle.usecase;
 
 import br.com.cedran.coding.puzzle.gateway.InputGateway;
 import br.com.cedran.coding.puzzle.gateway.OutputGateway;
+import br.com.cedran.coding.puzzle.model.options.TextColors;
 
 public abstract class Scenario {
 
@@ -13,7 +14,13 @@ public abstract class Scenario {
         this.input = input;
     }
 
-    public abstract Scenario start();
+    public Scenario start() {
+        output.clear();
+        output.print(TextColors.RESET);
+        return this.execute();
+    }
+
+    public abstract Scenario execute();
 
     Integer obtainInteger() {
         output.print("Type one option: ");
