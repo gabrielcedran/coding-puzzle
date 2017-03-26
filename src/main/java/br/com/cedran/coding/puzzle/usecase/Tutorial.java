@@ -38,8 +38,9 @@ public class Tutorial extends Scenario {
         output.println(TextColors.GREEN, Movements.RIGHT.getKey() + " - to go to the right");
         output.println(TextColors.BLUE, "If you find any monster use " + Actions.ATTACK.getKey() + " to attack");
         output.println("If you want to go back to menu press Q");
-        output.println("After selecting a movement, press ENTER");
+        output.println("As this goes by turn, after selecting a movement, always press ENTER");
         output.println(TextColors.RED, "If you type more than one option, that movement will be discarded");
+        output.println("This game auto saves, therefore you don't have to worry about it");
 
         input.waitAnyInput();
         return new Explore(this.output, this.input, this.character, null, new Random(), new HardDisk());

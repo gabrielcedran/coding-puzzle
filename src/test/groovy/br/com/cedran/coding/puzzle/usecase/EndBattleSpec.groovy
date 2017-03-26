@@ -1,5 +1,6 @@
 package br.com.cedran.coding.puzzle.usecase
 
+import br.com.cedran.coding.puzzle.gateway.SaveGateway
 import br.com.cedran.coding.puzzle.model.characters.Character
 import br.com.cedran.coding.puzzle.model.characters.Warrior
 import br.com.cedran.coding.puzzle.model.creatures.Dragon
@@ -10,13 +11,15 @@ class EndBattleSpec extends BaseSpec {
     EndBattle endBattle
     Character character
     Monster monster
+    SaveGateway saveGateway
 
     def setup() {
         character = new Warrior()
         monster = new Dragon()
         monster.lifeRemaining = 0l
         monster.drawing = ["dragon picture"]
-        endBattle = new EndBattle(screen, keyboard, character, monster)
+        saveGateway = Mock(SaveGateway)
+        endBattle = new EndBattle(screen, keyboard, character, monster, saveGateway)
         endBattle.message = ["Congrats!"]
     }
 

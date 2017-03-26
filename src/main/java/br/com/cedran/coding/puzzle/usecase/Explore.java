@@ -8,6 +8,7 @@ import br.com.cedran.coding.puzzle.gateway.SaveGateway;
 import br.com.cedran.coding.puzzle.model.characters.Character;
 import br.com.cedran.coding.puzzle.model.creatures.MonsterFactory;
 import br.com.cedran.coding.puzzle.model.options.Movements;
+import br.com.cedran.coding.puzzle.model.options.TextColors;
 
 public class Explore extends Scenario {
 
@@ -33,6 +34,8 @@ public class Explore extends Scenario {
         } else {
             output.println("Number of steps: " + character.getSteps() + " | Experience: " + character.getExperience());
         }
+        output.println(TextColors.YELLOW, Movements.FORWARD.getKey() + " - forward | " + Movements.BACKWARD.getKey() + " - backward | " + Movements.LEFT.getKey() + " -  left | "
+                        + Movements.RIGHT.getKey() + " - right | Q - Menu");
         String option = this.obtainString();
         return verifyOption(option);
     }

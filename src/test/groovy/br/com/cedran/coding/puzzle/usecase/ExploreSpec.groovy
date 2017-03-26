@@ -33,6 +33,8 @@ class ExploreSpec extends BaseSpec {
         screenMessages[0] == "character drawing"
         and: "the current number of steps and experience is displayed"
         screenMessages[1] == "Number of steps: 0 | Experience: 0"
+        and: "instruction of commands is displayed"
+        screenMessages[2] == "W - forward | S - backward | A -  left | D - right | Q - Menu"
         and: "the number of steps is increased"
         character.steps == 1l
         and: "the next screen returned is explore scenario"
