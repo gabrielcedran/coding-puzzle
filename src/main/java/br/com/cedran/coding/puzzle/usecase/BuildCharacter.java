@@ -1,23 +1,23 @@
 package br.com.cedran.coding.puzzle.usecase;
 
+import java.util.Optional;
+
 import br.com.cedran.coding.puzzle.gateway.InputGateway;
 import br.com.cedran.coding.puzzle.gateway.OutputGateway;
 import br.com.cedran.coding.puzzle.model.characters.Character;
 import br.com.cedran.coding.puzzle.model.options.TextColors;
 
-public class BuildProfile extends Scenario {
+public class BuildCharacter extends Scenario {
 
     private Character character;
 
-    public BuildProfile(OutputGateway output, InputGateway input, Character character) {
+    public BuildCharacter(OutputGateway output, InputGateway input, Character character) {
         super(output, input);
         this.character = character;
     }
 
     @Override
-    public Scenario start() {
-        output.clear();
-        output.print(TextColors.RESET);
+    public Scenario execute() {
 
         output.print(character.getColor(), character.getDrawing());
 
@@ -32,7 +32,7 @@ public class BuildProfile extends Scenario {
             output.println(TextColors.YELLOW, TextColors.YELLOW.getNumber() + " - Yellow");
 
             output.print(TextColors.RESET);
-            verifyOption(this.obtainInteger());
+            verifyOption(Optional.ofNullable(this.obtainInteger()).orElse(-1));
         } else if (character.getName() == null) {
             output.println("The color of you character seems really good!");
             output.println("What about giving it a nickname?");

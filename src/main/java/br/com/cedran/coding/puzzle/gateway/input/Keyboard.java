@@ -20,7 +20,13 @@ public class Keyboard implements InputGateway {
 
     @Override
     public Integer readInteger() {
-        return scanner.nextInt();
+        Integer option = null;
+        try {
+            option = Integer.parseInt(scanner.next());
+        } catch (Exception e) {
+
+        }
+        return option;
     }
 
     @Override

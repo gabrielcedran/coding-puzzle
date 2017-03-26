@@ -6,6 +6,7 @@ class ShowMenuSpec extends BaseSpec {
 
     def setup() {
         showMenu = new ShowMenu(screen, keyboard)
+        showMenu.logo = ["Freak Island Logo"]
     }
 
     def "Test menu messages"() {
@@ -15,14 +16,16 @@ class ShowMenuSpec extends BaseSpec {
         when: "show menu executes"
         showMenu.start()
 
-        then: "message displayed are the welcome greeting"
-        screenMessages[0] == "Welcome to the blind land!"
+        then: "the Freak Island logo is displayed"
+        screenMessages[0] == "Freak Island Logo"
+        and: "a greeting message is displayed"
+        screenMessages[1] == "The place where you meet creatures that you've never imagined before!"
         and: "the option new game"
-        screenMessages[1] == "1- New Game"
+        screenMessages[2] == "1- New Game"
         and: "the option load game"
-        screenMessages[2] == "2- Load Game"
+        screenMessages[3] == "2- Load Game"
         and: "the option exit"
-        screenMessages[3] == "3- Exit"
+        screenMessages[4] == "3- Exit"
 
     }
 
@@ -33,8 +36,20 @@ class ShowMenuSpec extends BaseSpec {
         when: "show menu executes"
         Scenario useCase = showMenu.start()
 
-        then: "the build profile scenario is returned"
-        useCase instanceof BuildProfile
+        then: "the build character scenario is returned"
+        useCase instanceof BuildCharacter
+
+    }
+
+    def "Test load game flow"() {
+        given: "the messages were displayed and the user will select the option 2 - Load Game"
+        keyboard.readInteger() >> 2
+
+        when: "show menu executes"
+        Scenario useCase = showMenu.start()
+
+        then: "the load character scenario is returned"
+        useCase instanceof LoadCharacter
 
     }
 
@@ -45,7 +60,7 @@ class ShowMenuSpec extends BaseSpec {
         when: "show menu executes"
         Scenario useCase = showMenu.start()
 
-        then: "the build profile screen is returned"
+        then: "the build character screen is returned"
         useCase == null
 
     }
@@ -57,7 +72,7 @@ class ShowMenuSpec extends BaseSpec {
         when: "show menu executes"
         Scenario useCase = showMenu.start()
 
-        then: "the build profile screen is returned"
+        then: "the build character screen is returned"
         useCase instanceof ShowMenu
 
     }

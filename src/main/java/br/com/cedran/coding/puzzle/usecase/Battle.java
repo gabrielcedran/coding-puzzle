@@ -5,6 +5,7 @@ import java.util.Random;
 
 import br.com.cedran.coding.puzzle.gateway.InputGateway;
 import br.com.cedran.coding.puzzle.gateway.OutputGateway;
+import br.com.cedran.coding.puzzle.gateway.database.HardDisk;
 import br.com.cedran.coding.puzzle.model.characters.Character;
 import br.com.cedran.coding.puzzle.model.creatures.Monster;
 import br.com.cedran.coding.puzzle.model.creatures.MonsterFactory;
@@ -31,9 +32,7 @@ public class Battle extends Scenario {
     }
 
     @Override
-    public Scenario start() {
-
-        output.clear();
+    public Scenario execute() {
 
         handleMonster();
 
@@ -81,8 +80,8 @@ public class Battle extends Scenario {
         for (int i = 0; i < emptyCols; i++) {
             output.print(" ");
         }
-        output.print(TextColors.RESET);
         output.println("]");
+        output.print(TextColors.RESET);
     }
 
     private void defineBarColor(Double percentage) {
@@ -105,7 +104,7 @@ public class Battle extends Scenario {
         });
 
         if (monster.getLifeRemaining() <= 0) {
-            nextScenario = new EndBattle(this.output, this.input, this.character, this.monster);
+            nextScenario = new EndBattle(this.output, this.input, this.character, this.monster, new HardDisk());
         }
 
         return nextScenario;

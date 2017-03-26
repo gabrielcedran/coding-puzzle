@@ -4,6 +4,8 @@ import java.util.Random;
 
 import br.com.cedran.coding.puzzle.gateway.InputGateway;
 import br.com.cedran.coding.puzzle.gateway.OutputGateway;
+import br.com.cedran.coding.puzzle.gateway.SaveGateway;
+import br.com.cedran.coding.puzzle.gateway.database.HardDisk;
 import br.com.cedran.coding.puzzle.model.characters.Character;
 import br.com.cedran.coding.puzzle.model.creatures.Monster;
 import br.com.cedran.coding.puzzle.model.options.TextColors;
@@ -14,22 +16,26 @@ public class EndBattle extends Scenario {
 
     private Character character;
 
-    public EndBattle(OutputGateway output, InputGateway input, Character character, Monster monster) {
+    private SaveGateway saveGateway;
+
+    public EndBattle(OutputGateway output, InputGateway input, Character character, Monster monster, SaveGateway saveGateway) {
         super(output, input);
         this.character = character;
         this.monster = monster;
+        this.saveGateway = saveGateway;
     }
 
     @Override
-    public Scenario start() {
-        output.clear();
+    public Scenario execute() {
         character.increaseExperience(monster.getExperience());
+        saveGateway.saveCharacter(character);
+
         output.print(TextColors.YELLOW, message);
-        output.println("You just defeated a " + monster.getName() + " and earned " + monster.getExperience());
+        output.println("You just defeated a " + monster.getName() + " and earned " + monster.getExperience() + " points!");
         output.println("Press any key to start exploring again...");
         input.waitAnyInput();
 
-        return new Explore(this.output, this.input, this.character, null, new Random());
+        return new Explore(this.output, this.input, this.character, null, new Random(), new HardDisk());
     }
 
     private String[] message = {

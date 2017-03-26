@@ -48,14 +48,15 @@ class TutorialSpec extends BaseSpec {
     }
 
     private void validateCommonMessages() {
-        screenMessages[2] == "To walk around use following keys:"
-        screenMessages[3] == Movements.FORWARD.key + " - to go forward"
-        screenMessages[4] == Movements.BACKWARD.key + " - to go backward"
-        screenMessages[5] == Movements.LEFT.key + " - to go to the left"
-        screenMessages[6] == Movements.RIGHT.key + " - to go to the right"
-        screenMessages[7] == "If you find any monster use " + Actions.ATTACK.key + " to attack"
-        screenMessages[8] == "If you want to go back to menu press Q"
-        screenMessages[9] == "After select a movement, press ENTER"
-        screenMessages[10] == "If you type more than one option, that movement will be discarded"
+        assert screenMessages[2] == "To walk around use following keys:"
+        assert screenMessages[3] == Movements.FORWARD.key + " - to go forward"
+        assert screenMessages[4] == Movements.BACKWARD.key + " - to go backward"
+        assert screenMessages[5] == Movements.LEFT.key + " - to go to the left"
+        assert screenMessages[6] == Movements.RIGHT.key + " - to go to the right"
+        assert screenMessages[7] == "If you find any monster use " + Actions.ATTACK.key + " to attack"
+        assert screenMessages[8] == "If you want to go back to menu press Q"
+        assert screenMessages[9] == "As this goes by turn, after selecting a movement, always press ENTER"
+        assert screenMessages[10] == "If you type more than one option, that movement will be discarded"
+        assert screenMessages[11] == "This game auto saves, therefore you don't have to worry about it"
     }
 }

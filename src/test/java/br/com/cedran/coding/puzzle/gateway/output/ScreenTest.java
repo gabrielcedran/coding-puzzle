@@ -40,8 +40,8 @@ public class ScreenTest {
 
     @Test
     public void testPrintTextColorAndText() throws IOException {
-        // GIVEN the text "Welcome to the blind land!"
-        String message = "Welcome to the blind land!";
+        // GIVEN the text "Welcome to the freak land!"
+        String message = "Welcome to the freak land!";
         // AND the color yellow
         TextColors color = TextColors.YELLOW;
 
@@ -49,33 +49,33 @@ public class ScreenTest {
         screen.println(color, message);
 
         // THEN a line beginning with the ascii code of the color yellow followed by the text is printed
-        Assert.assertThat(argumentNewLine.getValue(), Matchers.equalTo(TextColors.YELLOW.getAscii() + "Welcome to the blind land!"));
+        Assert.assertThat(argumentNewLine.getValue(), Matchers.equalTo(TextColors.YELLOW.getAscii() + "Welcome to the freak land!"));
 
     }
 
     @Test
     public void testPrintTextInNewLine() throws IOException {
-        // GIVEN the text "Welcome to the blind land!"
-        String message = "Welcome to the blind land!";
+        // GIVEN the text "Welcome to the freak land!"
+        String message = "Welcome to the freak land!";
 
         // WHEN I send it to be printed
         screen.println(message);
 
         // THEN a line containing the text is printed
-        Assert.assertThat(argumentNewLine.getValue(), Matchers.equalTo("Welcome to the blind land!"));
+        Assert.assertThat(argumentNewLine.getValue(), Matchers.equalTo("Welcome to the freak land!"));
 
     }
 
     @Test
     public void testPrintText() throws IOException {
-        // GIVEN the text "Welcome to the blind land!"
-        String message = "Welcome to the blind land!";
+        // GIVEN the text "Welcome to the freak land!"
+        String message = "Welcome to the freak land!";
 
         // WHEN I send it to be printed
         screen.print(message);
 
         // THEN a line containing the text is printed
-        Assert.assertThat(argument.getValue(), Matchers.equalTo("Welcome to the blind land!"));
+        Assert.assertThat(argument.getValue(), Matchers.equalTo("Welcome to the freak land!"));
 
     }
 
@@ -96,8 +96,8 @@ public class ScreenTest {
     public void testPrintColorAndMultipleLines() throws IOException {
         // GIVEN the text color GREEN
         TextColors textColor = TextColors.WHITE;
-        // AND the words "Welcome", "to", "the", "blind" and "land!"
-        String[] texts = { "Welcome", "to", "the", "blind", "land!" };
+        // AND the words "Welcome", "to", "the", "freak" and "land!"
+        String[] texts = { "Welcome", "to", "the", "freak", "land!" };
 
         // WHEN I send them to be printed
         screen.print(textColor, texts);
@@ -105,7 +105,7 @@ public class ScreenTest {
         // THEN lines containing the colors are printed
         Assert.assertThat(argument.getAllValues(), Matchers.containsInRelativeOrder(textColor.getAscii(), TextColors.RESET.getAscii()));
         // AND lines containing the texts are printed as well
-        Assert.assertThat(argumentNewLine.getAllValues(), Matchers.containsInRelativeOrder("Welcome", "to", "the", "blind", "land!"));
+        Assert.assertThat(argumentNewLine.getAllValues(), Matchers.containsInRelativeOrder("Welcome", "to", "the", "freak", "land!"));
 
     }
 
