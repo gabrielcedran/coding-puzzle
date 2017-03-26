@@ -4,25 +4,25 @@ import br.com.cedran.coding.puzzle.model.characters.Character
 import br.com.cedran.coding.puzzle.model.characters.Warrior
 import br.com.cedran.coding.puzzle.model.options.TextColors
 
-class BuildProfileSpec extends BaseSpec {
+class BuildCharacterSpec extends BaseSpec {
 
-    BuildProfile buildProfile
+    BuildCharacter buildCharacter
     Character character
 
     def setup() {
         character = new Warrior()
         character.drawing = ["character drawing"]
-        buildProfile = new BuildProfile(screen, keyboard, character)
+        buildCharacter = new BuildCharacter(screen, keyboard, character)
     }
 
     def "Message displayed at the first step of this UC"() {
-        given: "the profile hasn't got a color yet"
+        given: "the character hasn't got a color yet"
         character.color = null
         and: "the use will select the option '1 - Red'"
         keyboard.readInteger() >> 1
 
-        when: "the build profile is started"
-        buildProfile.start()
+        when: "the build character is started"
+        buildCharacter.start()
 
         then: "the character drawing is displayed"
         screenMessages[0] == "character drawing"
@@ -31,28 +31,28 @@ class BuildProfileSpec extends BaseSpec {
     }
 
     def "Character color selection"() {
-        given: "the profile hasn't got a color yet"
+        given: "the character hasn't got a color yet"
         character.color = null
         and: "the use will select the option '1 - Red'"
         keyboard.readInteger() >> 1
 
-        when: "the build profile is started"
-        Scenario useCase = buildProfile.start()
+        when: "the build character is started"
+        Scenario useCase = buildCharacter.start()
 
         then: "the color red is set to the character"
         character.color == TextColors.RED
-        and: "the uc build profile is returned"
-        useCase instanceof BuildProfile
+        and: "the uc build character is returned"
+        useCase instanceof BuildCharacter
     }
 
     def "Character nickname definition"() {
-        given: "the profile a color selected"
+        given: "the character a color selected"
         character.color = TextColors.BLUE
         and: "the use will type the nickname 'Cedran'"
         keyboard.readString() >> "Cedran"
 
-        when: "the build profile is started"
-        Scenario useCase = buildProfile.start()
+        when: "the build character is started"
+        Scenario useCase = buildCharacter.start()
 
         then: "the character drawing is displayed"
         screenMessages[0] == "character drawing"
@@ -61,17 +61,17 @@ class BuildProfileSpec extends BaseSpec {
         screenMessages[2] == "What about giving it a nickname?"
         and: "the nickname 'Cedran' is set to the character"
         character.name == "Cedran"
-        and: "the uc BuildProfile is returned"
-        useCase instanceof BuildProfile
+        and: "the uc BuildCharacter is returned"
+        useCase instanceof BuildCharacter
     }
 
     def "Fulfilled character"() {
-        given: "the profile has color and nickname"
+        given: "the character has color and nickname"
         character.color = TextColors.YELLOW
         character.name = "Cedran"
 
-        when: "the build profile is started"
-        Scenario useCase = buildProfile.start()
+        when: "the build character is started"
+        Scenario useCase = buildCharacter.start()
 
         then: "the character drawing is displayed"
         screenMessages[0] == "character drawing"

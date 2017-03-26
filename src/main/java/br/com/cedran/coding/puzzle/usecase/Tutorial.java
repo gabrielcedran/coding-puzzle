@@ -4,6 +4,7 @@ import java.util.Random;
 
 import br.com.cedran.coding.puzzle.gateway.InputGateway;
 import br.com.cedran.coding.puzzle.gateway.OutputGateway;
+import br.com.cedran.coding.puzzle.gateway.database.HardDisk;
 import br.com.cedran.coding.puzzle.model.characters.Character;
 import br.com.cedran.coding.puzzle.model.options.Actions;
 import br.com.cedran.coding.puzzle.model.options.Movements;
@@ -41,6 +42,6 @@ public class Tutorial extends Scenario {
         output.println(TextColors.RED, "If you type more than one option, that movement will be discarded");
 
         input.waitAnyInput();
-        return new Explore(this.output, this.input, this.character, null, new Random());
+        return new Explore(this.output, this.input, this.character, null, new Random(), new HardDisk());
     }
 }

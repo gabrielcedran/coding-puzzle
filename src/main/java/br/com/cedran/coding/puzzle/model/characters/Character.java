@@ -1,8 +1,10 @@
 package br.com.cedran.coding.puzzle.model.characters;
 
+import java.io.Serializable;
+
 import br.com.cedran.coding.puzzle.model.options.TextColors;
 
-public abstract class Character {
+public abstract class Character implements Serializable {
 
     private String name;
     private TextColors color;
@@ -50,4 +52,5 @@ public abstract class Character {
     }
 
     public abstract String[] getDrawing();
+
 }

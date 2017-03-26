@@ -33,8 +33,20 @@ class ShowMenuSpec extends BaseSpec {
         when: "show menu executes"
         Scenario useCase = showMenu.start()
 
-        then: "the build profile scenario is returned"
-        useCase instanceof BuildProfile
+        then: "the build character scenario is returned"
+        useCase instanceof BuildCharacter
+
+    }
+
+    def "Test load game flow"() {
+        given: "the messages were displayed and the user will select the option 2 - Load Game"
+        keyboard.readInteger() >> 2
+
+        when: "show menu executes"
+        Scenario useCase = showMenu.start()
+
+        then: "the load character scenario is returned"
+        useCase instanceof LoadCharacter
 
     }
 
@@ -45,7 +57,7 @@ class ShowMenuSpec extends BaseSpec {
         when: "show menu executes"
         Scenario useCase = showMenu.start()
 
-        then: "the build profile screen is returned"
+        then: "the build character screen is returned"
         useCase == null
 
     }
@@ -57,7 +69,7 @@ class ShowMenuSpec extends BaseSpec {
         when: "show menu executes"
         Scenario useCase = showMenu.start()
 
-        then: "the build profile screen is returned"
+        then: "the build character screen is returned"
         useCase instanceof ShowMenu
 
     }

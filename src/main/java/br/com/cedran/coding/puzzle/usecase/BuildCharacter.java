@@ -5,11 +5,11 @@ import br.com.cedran.coding.puzzle.gateway.OutputGateway;
 import br.com.cedran.coding.puzzle.model.characters.Character;
 import br.com.cedran.coding.puzzle.model.options.TextColors;
 
-public class BuildProfile extends Scenario {
+public class BuildCharacter extends Scenario {
 
     private Character character;
 
-    public BuildProfile(OutputGateway output, InputGateway input, Character character) {
+    public BuildCharacter(OutputGateway output, InputGateway input, Character character) {
         super(output, input);
         this.character = character;
     }

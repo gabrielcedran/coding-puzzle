@@ -2,6 +2,7 @@ package br.com.cedran.coding.puzzle.usecase;
 
 import br.com.cedran.coding.puzzle.gateway.InputGateway;
 import br.com.cedran.coding.puzzle.gateway.OutputGateway;
+import br.com.cedran.coding.puzzle.gateway.database.HardDisk;
 import br.com.cedran.coding.puzzle.model.characters.CharacterFactory;
 import br.com.cedran.coding.puzzle.model.options.Menu;
 import br.com.cedran.coding.puzzle.model.options.TextColors;
@@ -27,9 +28,9 @@ public class ShowMenu extends Scenario {
     private Scenario verifyOption(Integer option) {
         Menu menu = Menu.getByNumber(option);
         if (Menu.NEW_GAME.equals(menu)) {
-            return new BuildProfile(this.output, this.input, new CharacterFactory().getCharacter("WARRIOR"));
+            return new BuildCharacter(this.output, this.input, new CharacterFactory().getCharacter("WARRIOR"));
         } else if (Menu.LOAD_GAME.equals(menu)) {
-            return null;
+            return new LoadCharacter(this.output, this.input, new HardDisk());
         } else if (Menu.QUIT_GAME.equals(menu)) {
             return null;
         }

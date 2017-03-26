@@ -1,5 +1,6 @@
 package br.com.cedran.coding.puzzle.usecase
 
+import br.com.cedran.coding.puzzle.gateway.SaveGateway
 import br.com.cedran.coding.puzzle.model.characters.Character
 import br.com.cedran.coding.puzzle.model.characters.Warrior
 import br.com.cedran.coding.puzzle.model.options.Movements
@@ -9,12 +10,14 @@ class ExploreSpec extends BaseSpec {
     Explore exploreScenario
     Character character
     Random random
+    SaveGateway saveGateway
 
     def setup() {
         character = new Warrior()
         character.drawing = ["character drawing"];
         random = Mock(Random)
-        exploreScenario = new Explore(screen, keyboard, character, null, random)
+        saveGateway = Mock(SaveGateway)
+        exploreScenario = new Explore(screen, keyboard, character, null, random, saveGateway)
     }
 
     def "Execute explore scenario without previous movement"() {
