@@ -36,7 +36,7 @@ class EndBattleSpec extends BaseSpec {
         and: "a message saying which monster was killed and how many point of experience it gave is displayed"
         screenMessages[1] == "You just defeated a ${monster.getName()} and earned ${monster.getExperience()}"
         and: "the next scenario returned is explore"
-        scenario instanceof ExploreScenario
+        scenario instanceof Explore
     }
 
 

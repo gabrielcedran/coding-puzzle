@@ -27,13 +27,13 @@ public class ShowMenu extends Scenario {
     private Scenario verifyOption(Integer option) {
         Menu menu = Menu.getByNumber(option);
         if (Menu.NEW_GAME.equals(menu)) {
-            return new BuildProfile(this.output, this.input, CharacterFactory.getInstance());
+            return new BuildProfile(this.output, this.input, new CharacterFactory().getCharacter("WARRIOR"));
         } else if (Menu.LOAD_GAME.equals(menu)) {
             return null;
         } else if (Menu.QUIT_GAME.equals(menu)) {
             return null;
         }
-        return new ShowMenu(this.output, this.input);
+        return this;
     }
 
 }

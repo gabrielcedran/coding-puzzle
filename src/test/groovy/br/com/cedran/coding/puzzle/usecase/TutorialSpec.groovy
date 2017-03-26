@@ -28,7 +28,7 @@ class TutorialSpec extends BaseSpec {
         screenMessages[1] == "Before you start, here are some tips:"
         validateCommonMessages()
         and: "the explore scenario is returned"
-        useCase instanceof ExploreScenario
+        useCase instanceof Explore
     }
 
     def "Tutorial for newbies players"() {
@@ -44,7 +44,7 @@ class TutorialSpec extends BaseSpec {
         screenMessages[1] == "It seems that you haven't played much yet, therefore, lets remember how to play:"
         validateCommonMessages()
         and: "the explore scenario is returned"
-        useCase instanceof ExploreScenario
+        useCase instanceof Explore
     }
 
     private void validateCommonMessages() {

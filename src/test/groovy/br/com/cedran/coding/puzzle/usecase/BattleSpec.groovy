@@ -14,7 +14,7 @@ class BattleSpec extends BaseSpec {
     Random random
     Monster monster
     MonsterFactory monsterFactory
-    
+
     def setup() {
         character = new Warrior()
         random = Mock(Random)
@@ -29,7 +29,7 @@ class BattleSpec extends BaseSpec {
         given: "The battle's just begun and there isn't a monster selected"
         battle.monster = null
         and: "the monster factory will return a dragon"
-        monsterFactory.getMonster() >> monster
+        monsterFactory.getMonster(_) >> monster
         and: "there isn't an action"
         battle.action = null
         and: "the user will type A - for attack"
@@ -98,7 +98,7 @@ class BattleSpec extends BaseSpec {
         and: "the picture of the monster is printed"
         screenMessages[0] == "dragon picture"
         and: "a message displayed the damage cause is printed"
-        screenMessages[1] == "You cause a damage of 10 points!"
+        screenMessages[1] == "You caused a damage of 10 points!"
         and: "the life of the monster is printed"
         screenMessages[2] == "Dragon's Life [${monster.lifeRemaining}/${monster.life}]"
         and: "the life bar of the monster is printed"
@@ -128,7 +128,7 @@ class BattleSpec extends BaseSpec {
         and: "the picture of the monster is printed"
         screenMessages[0] == "dragon picture"
         and: "a message displayed the damage cause is printed"
-        screenMessages[1] == "You cause a damage of 5 points!"
+        screenMessages[1] == "You caused a damage of 5 points!"
         and: "the life of the monster is printed"
         screenMessages[2] == "Dragon's Life [0/${monster.life}]"
         and: "the life bar of the monster is printed"
@@ -158,14 +158,14 @@ class BattleSpec extends BaseSpec {
         and: "the picture of the monster is printed"
         screenMessages[0] == "dragon picture"
         and: "a message displayed the damage cause is printed"
-        screenMessages[1] == "You cause a damage of 10 points!"
+        screenMessages[1] == "You caused a damage of 10 points!"
         and: "the life of the monster is printed"
         screenMessages[2] == "Dragon's Life [0/${monster.life}]"
         and: "the life bar of the monster is printed"
         verifyLifeBar(3, 0)
         and: "a text to press ENTER to continue is displayed"
         screenMessages[25] == "Press ENTER to continue..."
-        and: "the next scenario is still the battle"
+        and: "the next scenario is the end battle"
         scenario instanceof EndBattle
     }
 

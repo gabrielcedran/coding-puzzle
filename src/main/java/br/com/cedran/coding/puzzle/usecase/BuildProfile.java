@@ -21,7 +21,7 @@ public class BuildProfile extends Scenario {
 
         output.print(character.getColor(), character.getDrawing());
 
-        Scenario nextScenario = new BuildProfile(this.output, this.input, this.character);
+        Scenario nextScenario = this;
         if (character.getColor() == null) {
 
             output.println("Which color would you like your character to have?");

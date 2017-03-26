@@ -77,7 +77,7 @@ class BuildProfileSpec extends BaseSpec {
         screenMessages[0] == "character drawing"
         and: "the messages 'The color of you character seems really good!' and 'What about giving it a nickname?' are displayed"
         screenMessages[1] == "Hello brave warrior Cedran. Are you ready to start your journey?"
-        and: "the UC ExploreScenario is returned"
+        and: "the UC Explore is returned"
         useCase instanceof Tutorial
     }
 }

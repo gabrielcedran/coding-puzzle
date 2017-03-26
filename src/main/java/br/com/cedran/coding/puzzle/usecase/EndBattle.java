@@ -29,7 +29,7 @@ public class EndBattle extends Scenario {
         output.println("Press any key to start exploring again...");
         input.waitAnyInput();
 
-        return new ExploreScenario(this.output, this.input, this.character, null, new Random());
+        return new Explore(this.output, this.input, this.character, null, new Random());
     }
 
     private String[] message = {

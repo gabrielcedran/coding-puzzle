@@ -1,5 +1,6 @@
 package br.com.cedran.coding.puzzle.usecase;
 
+import java.util.Optional;
 import java.util.Random;
 
 import br.com.cedran.coding.puzzle.gateway.InputGateway;
@@ -45,14 +46,14 @@ public class Battle extends Scenario {
             verifyOption(input.readString());
         } else {
             output.println("Press ENTER to continue...");
-            input.readString();
+            input.waitAnyInput();
         }
         return nextScenario;
     }
 
     private void handleMonster() {
         if (monster == null) {
-            monster = monsterFactory.getMonster();
+            monster = monsterFactory.getMonster(random.nextInt(1));
             output.println(monster.getIntroduction());
         }
         output.print(monster.getColor(), monster.getDrawing());
@@ -63,18 +64,17 @@ public class Battle extends Scenario {
 
     private void printLifeRemaining() {
         output.println(monster.getName() + "'s Life [" + monster.getLifeRemaining() + "/" + monster.getLife() + "]");
+        printLifeBar();
+    }
 
-        output.print("[");
+    private void printLifeBar() {
         Double percentage = monster.getLifeRemaining().doubleValue() / monster.getLife().doubleValue();
         Long filledCols = Math.round(percentage * 20);
         Long emptyCols = 20 - filledCols;
-        if (percentage < 0.3) {
-            output.print(TextColors.RED);
-        } else if (percentage >= 0.3 && percentage < 0.6) {
-            output.print(TextColors.YELLOW);
-        } else {
-            output.print(TextColors.GREEN);
-        }
+
+        defineBarColor(percentage);
+
+        output.print("[");
         for (int i = 0; i < filledCols; i++) {
             output.print("#");
         }
@@ -85,17 +85,30 @@ public class Battle extends Scenario {
         output.println("]");
     }
 
-    private Scenario calculateDamage() {
-        if (action != null) {
-            Integer damage = random.nextInt(10);
-            output.println("You cause a damage of " + damage + " points!");
-            monster.decreaseLifeRemaining(damage);
-            if (monster.getLifeRemaining() <= 0) {
-                return new EndBattle(this.output, this.input, this.character, this.monster);
-            }
-
+    private void defineBarColor(Double percentage) {
+        if (percentage < 0.2) {
+            output.print(TextColors.RED);
+        } else if (percentage >= 0.2 && percentage < 0.6) {
+            output.print(TextColors.YELLOW);
+        } else {
+            output.print(TextColors.GREEN);
         }
-        return this;
+    }
+
+    private Scenario calculateDamage() {
+        Scenario nextScenario = this;
+
+        Optional.ofNullable(action).ifPresent(action -> {
+            Integer damage = random.nextInt(10);
+            output.println("You caused a damage of " + damage + " points!");
+            monster.decreaseLifeRemaining(damage);
+        });
+
+        if (monster.getLifeRemaining() <= 0) {
+            nextScenario = new EndBattle(this.output, this.input, this.character, this.monster);
+        }
+
+        return nextScenario;
     }
 
     private void verifyOption(String option) {

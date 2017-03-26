@@ -33,7 +33,7 @@ class ShowMenuSpec extends BaseSpec {
         when: "show menu executes"
         Scenario useCase = showMenu.start()
 
-        then: "the build profile screen is returned"
+        then: "the build profile scenario is returned"
         useCase instanceof BuildProfile
 
     }

@@ -31,16 +31,16 @@ public class Tutorial extends Scenario {
         }
 
         output.println("To walk around use following keys:");
-        output.println(Movements.FORWARD.getKey() + " - to go forward");
-        output.println(Movements.BACKWARD.getKey() + " - to go backward");
-        output.println(Movements.LEFT.getKey() + " - to go to the left");
-        output.println(Movements.RIGHT.getKey() + " - to go to the right");
-        output.println("If you find any monster use " + Actions.ATTACK.getKey() + " to attack");
+        output.println(TextColors.YELLOW, Movements.FORWARD.getKey() + " - to go forward");
+        output.println(TextColors.YELLOW, Movements.BACKWARD.getKey() + " - to go backward");
+        output.println(TextColors.GREEN, Movements.LEFT.getKey() + " - to go to the left");
+        output.println(TextColors.GREEN, Movements.RIGHT.getKey() + " - to go to the right");
+        output.println(TextColors.BLUE, "If you find any monster use " + Actions.ATTACK.getKey() + " to attack");
         output.println("If you want to go back to menu press Q");
-        output.println("After select a movement, press ENTER");
+        output.println("After selecting a movement, press ENTER");
         output.println(TextColors.RED, "If you type more than one option, that movement will be discarded");
 
         input.waitAnyInput();
-        return new ExploreScenario(this.output, this.input, this.character, null, new Random());
+        return new Explore(this.output, this.input, this.character, null, new Random());
     }
 }

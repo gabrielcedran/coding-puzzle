@@ -4,9 +4,9 @@ import br.com.cedran.coding.puzzle.model.characters.Character
 import br.com.cedran.coding.puzzle.model.characters.Warrior
 import br.com.cedran.coding.puzzle.model.options.Movements
 
-class ExploreScenarioSpec extends BaseSpec {
+class ExploreSpec extends BaseSpec {
 
-    ExploreScenario exploreScenario
+    Explore exploreScenario
     Character character
     Random random
 
@@ -14,7 +14,7 @@ class ExploreScenarioSpec extends BaseSpec {
         character = new Warrior()
         character.drawing = ["character drawing"];
         random = Mock(Random)
-        exploreScenario = new ExploreScenario(screen, keyboard, character, null, random)
+        exploreScenario = new Explore(screen, keyboard, character, null, random)
     }
 
     def "Execute explore scenario without previous movement"() {
@@ -33,7 +33,7 @@ class ExploreScenarioSpec extends BaseSpec {
         and: "the number of steps is increased"
         character.steps == 1l
         and: "the next screen returned is explore scenario"
-        useCase instanceof ExploreScenario
+        useCase instanceof Explore
     }
 
     def "Move forwards"() {
@@ -54,7 +54,7 @@ class ExploreScenarioSpec extends BaseSpec {
         and: "the number of steps is increased"
         character.steps == 5l
         and: "the next screen returned is explore scenario"
-        useCase instanceof ExploreScenario
+        useCase instanceof Explore
     }
 
     def "Move backwards and find a monster"() {
@@ -101,7 +101,7 @@ class ExploreScenarioSpec extends BaseSpec {
         and: "the number of steps is increased"
         character.steps == 10000002l
         and: "the next screen returned is explore scenario"
-        useCase instanceof ExploreScenario
+        useCase instanceof Explore
     }
 
     def "Move right and quit game"() {
@@ -143,6 +143,6 @@ class ExploreScenarioSpec extends BaseSpec {
         and: "the number of steps isn't increased"
         character.steps == 3l
         and: "the next screen returned is show menu"
-        useCase instanceof ExploreScenario
+        useCase instanceof Explore
     }
 }
