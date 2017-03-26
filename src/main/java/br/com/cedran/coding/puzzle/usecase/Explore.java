@@ -48,7 +48,7 @@ public class Explore extends Scenario {
             character.addStep();
             saveGateway.saveCharacter(character);
             if (random.nextInt(9) == 1) {
-                nextScenario = new Battle(this.output, this.input, this.random, this.character, new MonsterFactory());
+                nextScenario = new Battle(this.output, this.input, this.random, this.character, new MonsterFactory(this.random));
             } else {
                 nextScenario = this;
                 this.lastMovement = movement;

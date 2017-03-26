@@ -29,7 +29,7 @@ class BattleSpec extends BaseSpec {
         given: "The battle's just begun and there isn't a monster selected"
         battle.monster = null
         and: "the monster factory will return a dragon"
-        monsterFactory.getMonster(_) >> monster
+        monsterFactory.getMonster() >> monster
         and: "there isn't an action"
         battle.action = null
         and: "the user will type A - for attack"

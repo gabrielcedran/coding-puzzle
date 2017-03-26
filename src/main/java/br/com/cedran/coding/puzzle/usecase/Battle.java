@@ -52,7 +52,7 @@ public class Battle extends Scenario {
 
     private void handleMonster() {
         if (monster == null) {
-            monster = monsterFactory.getMonster(random.nextInt(1));
+            monster = monsterFactory.getMonster();
             output.println(monster.getIntroduction());
         }
         output.print(monster.getColor(), monster.getDrawing());

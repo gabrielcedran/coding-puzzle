@@ -5,7 +5,6 @@ import java.util.Random;
 import br.com.cedran.coding.puzzle.gateway.InputGateway;
 import br.com.cedran.coding.puzzle.gateway.OutputGateway;
 import br.com.cedran.coding.puzzle.gateway.SaveGateway;
-import br.com.cedran.coding.puzzle.gateway.database.HardDisk;
 import br.com.cedran.coding.puzzle.model.characters.Character;
 import br.com.cedran.coding.puzzle.model.creatures.Monster;
 import br.com.cedran.coding.puzzle.model.options.TextColors;
@@ -35,7 +34,7 @@ public class EndBattle extends Scenario {
         output.println("Press any key to start exploring again...");
         input.waitAnyInput();
 
-        return new Explore(this.output, this.input, this.character, null, new Random(), new HardDisk());
+        return new Explore(this.output, this.input, this.character, null, new Random(), this.saveGateway);
     }
 
     private String[] message = {
