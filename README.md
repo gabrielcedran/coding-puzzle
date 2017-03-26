@@ -1,4 +1,4 @@
-# coding-puzzle
+[![Build Status](https://travis-ci.org/gabrielcedran/coding-puzzle.svg?branch=master)](https://travis-ci.org/gabrielcedran/coding-puzzle)
 
 # For players:
 ### History
