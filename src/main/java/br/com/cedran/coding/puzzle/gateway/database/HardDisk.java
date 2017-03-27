@@ -17,7 +17,7 @@ public class HardDisk implements SaveGateway {
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
             objectOutputStream.writeObject(character);
         } catch (Exception e) {
-            e.printStackTrace();
+            // Do Nothing
         }
     }
 
@@ -29,7 +29,7 @@ public class HardDisk implements SaveGateway {
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
             character = Optional.ofNullable(objectInputStream.readObject()).map(object -> (Character) object).orElse(null);
         } catch (Exception e) {
-            e.printStackTrace();
+            // Do Nothing
         }
         return character;
     }
