@@ -84,7 +84,7 @@ Contains the rules of the system. It is supposed to build new characters, start 
 Communications between the system and outside world. It does not matter to the business if the input of an user is being made through keybord, mouse or controller or even if it's through console terminal or web page. Everything that does not matter to the business itself should be in this layer. This approach also makes easy to change external components.
 
 ##### Automated tests
-To test the use cases, it's being used [spock frameowork](http://spockframework.org/). It is a testing and specification framework that assists building tests using expressive language that provides maintainability through BDD style notation.
+To test the use cases, it's being used [Spock Framework](http://spockframework.org/). It is a testing and specification framework that assists building tests using expressive language that provides maintainability through BDD style notation.
 
 To the gateways tests, it's being used traditional junit with mockito and hamcrest. After seeing the benefits that spock framework brought to the maintainability through its bdd style notation, it was defined that unit tests are also supposed to be broken in three parts: GIVEN, WHEN and THEN. Although junit does not provide this kind of notation, you are supposed to write them as comments.
 It will help you to write better tests and it will help you to figure out what exactly you are testing. Others in the future will be very thank when they easily understand what that unit test was made for.
