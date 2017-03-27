@@ -3,6 +3,8 @@ jdk:
   - oraclejdk8
 sudo: required
 after_success:
+  - pwd
+  - ls
   - .travis/push-jar.sh
 env:
   global:
