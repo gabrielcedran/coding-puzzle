@@ -68,5 +68,29 @@ Add a new entrance to the enum "Actions". The first parameter is the name of the
 When you add a new action, it is automatically shown in the battle scene.
 In the current mechanism, doesn't matter the action selected, it will always have the same behavior. If you want this action to cause something different during a battle, you have to implement it's behaviour in the method calculate of the DamageEngine - see the section "Changing monsters battle engine".
 
+##### Architecture
+This project tries to follow (the clean architecture)[https://8thlight.com/blog/uncle-bob/2012/08/13/the-clean-architecture.html] therefore it is layers are splitted in four tiers:
+1. Models
+2. Use Cases
+3. Gateways
+
+###### Model
+Contains the strong entities of the system like Character, Monsters, etc
+
+###### Use Case
+Contains the rules of the system. It is supposed to build new characters, start battles, validate options, etc
+
+###### Gateways
+Communications between the system and outside world. It does matter to the business if the input of an user is being made through keybord, mouse or controller or even if it's through console terminal or web page. Everything that does not matter to the business itself should be in this layer
+
+##### Automated tests
+To test the use cases, it's being used (spock frameowork) [http://spockframework.org/]. It is a testing and specification framework that assists building tests using expressive language that provides maintainability through BDD style notation.
+
+To the gateways tests, it's being used traditional junit with mockito and hamcrest. After seeing the benefits that spock framework brought to the maintainability through its bdd style notation, it was defined that unit tests are also supposed to be broken in three parts: GIVEN, WHEN and THEN. Although junit does not provide this kind of notation, you are supposed to write them as comments.
+It will help you to write better tests and it will help you to figure out what exactly you are testing. Others in the future will be very thank when they easily understand what that unit test was made for.
+
+*After changing the project, don't forget to make sure that your code is properly covered with automated tests. Nowadays, the coverage is higher than 95%!*
+
+
 ##### Build:
 For every commit one build is run. If it is succeeded, the runnable jar is automated updated and a new version of the game is released.
