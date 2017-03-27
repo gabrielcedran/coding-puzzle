@@ -81,7 +81,7 @@ Contains the strong entities of the system like Character, Monsters, etc
 Contains the rules of the system. It is supposed to build new characters, start battles, validate options, etc
 
 ###### Gateways
-Communications between the system and outside world. It does matter to the business if the input of an user is being made through keybord, mouse or controller or even if it's through console terminal or web page. Everything that does not matter to the business itself should be in this layer
+Communications between the system and outside world. It does not matter to the business if the input of an user is being made through keybord, mouse or controller or even if it's through console terminal or web page. Everything that does not matter to the business itself should be in this layer. This approach also makes easy to change external components.
 
 ##### Automated tests
 To test the use cases, it's being used [spock frameowork](http://spockframework.org/). It is a testing and specification framework that assists building tests using expressive language that provides maintainability through BDD style notation.
