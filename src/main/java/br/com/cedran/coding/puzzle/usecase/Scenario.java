@@ -6,10 +6,10 @@ import br.com.cedran.coding.puzzle.model.options.TextColors;
 
 public abstract class Scenario {
 
-    OutputGateway output;
-    InputGateway input;
+    protected OutputGateway output;
+    protected InputGateway input;
 
-    Scenario(OutputGateway output, InputGateway input) {
+    public Scenario(OutputGateway output, InputGateway input) {
         this.output = output;
         this.input = input;
     }

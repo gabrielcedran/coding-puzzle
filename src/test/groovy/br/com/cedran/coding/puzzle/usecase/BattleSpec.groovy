@@ -6,6 +6,10 @@ import br.com.cedran.coding.puzzle.model.creatures.Dragon
 import br.com.cedran.coding.puzzle.model.creatures.Monster
 import br.com.cedran.coding.puzzle.model.creatures.MonsterFactory
 import br.com.cedran.coding.puzzle.model.options.Actions
+import br.com.cedran.coding.puzzle.usecase.battle.Battle
+import br.com.cedran.coding.puzzle.usecase.battle.DamageEngine
+import br.com.cedran.coding.puzzle.usecase.battle.DefaultDamageEngine
+import br.com.cedran.coding.puzzle.usecase.battle.EndBattle
 
 class BattleSpec extends BaseSpec {
 
@@ -13,6 +17,7 @@ class BattleSpec extends BaseSpec {
     Character character
     Random random
     Monster monster
+    DamageEngine damageEngine
     MonsterFactory monsterFactory
 
     def setup() {
@@ -22,7 +27,8 @@ class BattleSpec extends BaseSpec {
         monster.drawing = ["dragon picture"]
         monsterFactory = Mock(MonsterFactory)
         battle = new Battle(screen, keyboard, random, character, monsterFactory)
-
+        damageEngine = new DefaultDamageEngine(character, monster, random, screen)
+        battle.damageEngine = damageEngine
     }
 
     def "Beginning of a battle"() {
@@ -34,7 +40,6 @@ class BattleSpec extends BaseSpec {
         battle.action = null
         and: "the user will type A - for attack"
         keyboard.readString() >> 'A'
-
 
         when: "the scenario executes"
         Scenario scenario = battle.start()
@@ -49,14 +54,17 @@ class BattleSpec extends BaseSpec {
         screenMessages[2] == "Dragon's Life [${monster.lifeRemaining}/${monster.life}]"
         and: "the life bar of the monster is printed"
         verifyLifeBar(3, 20)
-        and: "a text given pointer how to play is printed"
-        screenMessages[25] == "Type A and ENTER to Attack"
+        and: "a text giving pointers how to play is printed"
+        screenMessages[25] == "Type: "
+        screenMessages[26] == "A to Attack | "
         and: "the next scenario is still the battle"
         scenario instanceof Battle
+        and: "the damage engine instantiated is default"
+        battle.damageEngine instanceof DefaultDamageEngine
     }
 
     def "Monster noise"() {
-        given: "the battle is going on monster have full life"
+        given: "the battle is going on and monster have full life"
         monster.lifeRemaining = 100l
         battle.monster = monster
         and: "and it's time to the monster make some impressions"
@@ -80,7 +88,7 @@ class BattleSpec extends BaseSpec {
     }
 
     def "Cause damage to the monster"() {
-        given: "the battle is going on monster have full life"
+        given: "the battle is going on and monster have full life"
         monster.lifeRemaining = 100l
         battle.monster = monster
         and: "there user selected the option Attack in the previous round"
@@ -103,8 +111,9 @@ class BattleSpec extends BaseSpec {
         screenMessages[2] == "Dragon's Life [${monster.lifeRemaining}/${monster.life}]"
         and: "the life bar of the monster is printed"
         verifyLifeBar(3, 18)
-        and: "a text given pointer how to play is printed"
-        screenMessages[25] == "Type A and ENTER to Attack"
+        and: "a text giving pointers how to play is printed"
+        screenMessages[25] == "Type: "
+        screenMessages[26] == "A to Attack | "
         and: "the next scenario is still the battle"
         scenario instanceof Battle
     }

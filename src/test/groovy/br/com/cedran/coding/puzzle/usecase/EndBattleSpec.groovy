@@ -5,6 +5,7 @@ import br.com.cedran.coding.puzzle.model.characters.Character
 import br.com.cedran.coding.puzzle.model.characters.Warrior
 import br.com.cedran.coding.puzzle.model.creatures.Dragon
 import br.com.cedran.coding.puzzle.model.creatures.Monster
+import br.com.cedran.coding.puzzle.usecase.battle.EndBattle
 
 class EndBattleSpec extends BaseSpec {
 

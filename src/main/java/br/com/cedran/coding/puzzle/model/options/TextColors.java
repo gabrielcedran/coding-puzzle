@@ -4,14 +4,16 @@ import java.util.Arrays;
 
 public enum TextColors {
 
-    RESET("\u001b[0m", -1), RED("\u001b[31m", 1), GREEN("\u001b[32m", 2), BLUE("\u001b[34m", 3), WHITE("\u001b[37m", 4), YELLOW("\u001b[33m", 5);
+    RESET("\u001b[0m", -1, null), RED("\u001b[31m", 1, "Red"), GREEN("\u001b[32m", 2, "Green"), BLUE("\u001b[34m", 3, "Blue"), WHITE("\u001b[37m", 4, "White"), YELLOW("\u001b[33m", 5, "Yellow");
 
     private String ascii;
     private Integer number;
+    private String description;
 
-    TextColors(String ascii, Integer number) {
+    TextColors(String ascii, Integer number, String description) {
         this.ascii = ascii;
         this.number = number;
+        this.description = description;
     }
 
     public String getAscii() {
@@ -20,6 +22,10 @@ public enum TextColors {
 
     public Integer getNumber() {
         return number;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     public static TextColors getByNumber(Integer number) {

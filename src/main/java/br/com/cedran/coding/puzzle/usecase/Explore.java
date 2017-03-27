@@ -9,6 +9,7 @@ import br.com.cedran.coding.puzzle.model.characters.Character;
 import br.com.cedran.coding.puzzle.model.creatures.MonsterFactory;
 import br.com.cedran.coding.puzzle.model.options.Movements;
 import br.com.cedran.coding.puzzle.model.options.TextColors;
+import br.com.cedran.coding.puzzle.usecase.battle.Battle;
 
 public class Explore extends Scenario {
 

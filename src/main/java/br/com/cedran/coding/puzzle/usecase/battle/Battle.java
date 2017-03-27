@@ -1,6 +1,6 @@
-package br.com.cedran.coding.puzzle.usecase;
+package br.com.cedran.coding.puzzle.usecase.battle;
 
-import java.util.Optional;
+import java.util.Arrays;
 import java.util.Random;
 
 import br.com.cedran.coding.puzzle.gateway.InputGateway;
@@ -11,6 +11,7 @@ import br.com.cedran.coding.puzzle.model.creatures.Monster;
 import br.com.cedran.coding.puzzle.model.creatures.MonsterFactory;
 import br.com.cedran.coding.puzzle.model.options.Actions;
 import br.com.cedran.coding.puzzle.model.options.TextColors;
+import br.com.cedran.coding.puzzle.usecase.Scenario;
 
 public class Battle extends Scenario {
 
@@ -24,6 +25,8 @@ public class Battle extends Scenario {
 
     private Character character;
 
+    private DamageEngine damageEngine;
+
     public Battle(OutputGateway output, InputGateway input, Random random, Character character, MonsterFactory monsterFactory) {
         super(output, input);
         this.random = random;
@@ -36,12 +39,13 @@ public class Battle extends Scenario {
 
         handleMonster();
 
-        Scenario nextScenario = calculateDamage();
+        Scenario nextScenario = handleDamage();
 
         printLifeRemaining();
 
         if (nextScenario instanceof Battle) {
-            output.println("Type " + Actions.ATTACK.getKey() + " and ENTER to " + Actions.ATTACK.getDescription());
+            output.print("Type: ");
+            Arrays.stream(Actions.values()).forEach((action) -> output.print(action.getKey() + " to " + action.getDescription() + " | "));
             verifyOption(input.readString());
         } else {
             output.println("Press ENTER to continue...");
@@ -54,6 +58,7 @@ public class Battle extends Scenario {
         if (monster == null) {
             monster = monsterFactory.getMonster();
             output.println(monster.getIntroduction());
+            damageEngine = new DamageEngineFactory(this.character, this.monster, this.random, this.output).getInstance(this.monster);
         }
         output.print(monster.getColor(), monster.getDrawing());
         if (random.nextInt(4) == 1) {
@@ -94,14 +99,10 @@ public class Battle extends Scenario {
         }
     }
 
-    private Scenario calculateDamage() {
+    private Scenario handleDamage() {
         Scenario nextScenario = this;
 
-        Optional.ofNullable(action).ifPresent(action -> {
-            Integer damage = random.nextInt(10);
-            output.println("You caused a damage of " + damage + " points!");
-            monster.decreaseLifeRemaining(damage);
-        });
+        damageEngine.execute(action);
 
         if (monster.getLifeRemaining() <= 0) {
             nextScenario = new EndBattle(this.output, this.input, this.character, this.monster, new HardDisk());

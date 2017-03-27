@@ -1,5 +1,6 @@
 package br.com.cedran.coding.puzzle.usecase;
 
+import java.util.Arrays;
 import java.util.Optional;
 
 import br.com.cedran.coding.puzzle.gateway.InputGateway;
@@ -19,9 +20,8 @@ public class ShowMenu extends Scenario {
     public Scenario execute() {
         output.print(TextColors.GREEN, logo);
         output.println(TextColors.RED, "The place where you meet creatures that you've never imagined before!");
-        output.println(TextColors.GREEN, Menu.NEW_GAME.getNumber() + "- " + Menu.NEW_GAME.getDescription());
-        output.println(Menu.LOAD_GAME.getNumber() + "- " + Menu.LOAD_GAME.getDescription());
-        output.println(Menu.QUIT_GAME.getNumber() + "- " + Menu.QUIT_GAME.getDescription());
+        output.print(TextColors.GREEN);
+        Arrays.stream(Menu.values()).forEach(menu -> output.println(menu.getNumber() + "- " + menu.getDescription()));
 
         return verifyOption(this.obtainInteger());
     }

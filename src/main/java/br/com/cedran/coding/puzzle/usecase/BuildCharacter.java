@@ -1,5 +1,6 @@
 package br.com.cedran.coding.puzzle.usecase;
 
+import java.util.Arrays;
 import java.util.Optional;
 
 import br.com.cedran.coding.puzzle.gateway.InputGateway;
@@ -25,11 +26,8 @@ public class BuildCharacter extends Scenario {
         if (character.getColor() == null) {
 
             output.println("Which color would you like your character to have?");
-            output.println(TextColors.RED, TextColors.RED.getNumber() + " - Red");
-            output.println(TextColors.GREEN, TextColors.GREEN.getNumber() + " - Green");
-            output.println(TextColors.BLUE, TextColors.BLUE.getNumber() + " - Blue");
-            output.println(TextColors.WHITE, TextColors.WHITE.getNumber() + " - White");
-            output.println(TextColors.YELLOW, TextColors.YELLOW.getNumber() + " - Yellow");
+            Arrays.stream(TextColors.values()).forEach(color -> Optional.of(color).filter(textColor -> textColor.getDescription() != null)
+                            .ifPresent(textColor -> output.println(textColor, textColor.getNumber() + " - " + textColor.getDescription())));
 
             output.print(TextColors.RESET);
             verifyOption(Optional.ofNullable(this.obtainInteger()).orElse(-1));

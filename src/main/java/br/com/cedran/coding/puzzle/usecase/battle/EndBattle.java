@@ -1,4 +1,4 @@
-package br.com.cedran.coding.puzzle.usecase;
+package br.com.cedran.coding.puzzle.usecase.battle;
 
 import java.util.Random;
 
@@ -8,6 +8,8 @@ import br.com.cedran.coding.puzzle.gateway.SaveGateway;
 import br.com.cedran.coding.puzzle.model.characters.Character;
 import br.com.cedran.coding.puzzle.model.creatures.Monster;
 import br.com.cedran.coding.puzzle.model.options.TextColors;
+import br.com.cedran.coding.puzzle.usecase.Explore;
+import br.com.cedran.coding.puzzle.usecase.Scenario;
 
 public class EndBattle extends Scenario {
 

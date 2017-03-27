@@ -25,7 +25,7 @@ public class LoadCharacter extends Scenario {
         Character character = this.saveGateway.loadCharacter();
         if (character == null) {
             output.println(TextColors.RED, "Couldn't find any previously saved game.");
-            output.println(TextColors.RED, "Press ENTER to go back to the menu...");
+            output.println(TextColors.RED, "Press ENTER to go back to menu...");
             nextScenario = new ShowMenu(output, input);
         } else {
             output.println("Welcome back " + character.getName());

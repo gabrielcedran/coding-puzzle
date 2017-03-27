@@ -7,8 +7,8 @@ Freak Island is a game where you meet creatures that you never thought before. I
 ##### Running the game:
 After [downloading](https://github.com/gabrielcedran/coding-puzzle/raw/master/runnable/freak-island.jar) the game, open your terminal in the folder where the freak-island.jar is. Type java -jar freak-island.jar and ENTER.
 
-#### Selecting a option
-This game runs in turns. Every time you are asked for an action you have to type your option e press ENTER. If you type an invalid option it will be discarded and you will be asked again. It's important to say that the game is case insensitive therefore if you are asked to chose between A or B and you type A or a it makes no different, but if you type aa or Aa or AA, it will be considered an invalid entrance.
+#### Selecting an option
+This game runs in turns. Every time you are asked for an action you have to type your option e press ENTER. If you type an invalid option it will be discarded and you will be asked again. It's important to say that the game is case insensitive therefore if you are asked to choose between A or B and you type A or a it makes no different, but if you type aa or Aa or AA, it will be considered an invalid entrance.
 
 ##### Cautions to not lose your saved game
 1. First of all, this game auto saves itself and it creates a file called character.saved. Do not delete this file or you will lose all your progress
@@ -31,13 +31,42 @@ Nowadays, there is only one option of character therefore it is automatically pi
 1. Create a new class that extends the Monster class
 2. Override the abstract methods
 3. Change the MonsterFactory to consider the new monster (increase the nextInt function)
+```java
+    public Monster getMonster() {
+        Integer monsterNumber = random.nextInt(2);
+        Monster monster = null;
+        if (monsterNumber == 0) {
+            monster = new Dragon();
+        } else if(monsterNumber == 2) {
+            monster = new RedDragon();
+        }
+        return monster;
+    }
+```
+
+##### Changing monsters battle engine:
+If you want to change de default engine battle or even if you want to change the engine of some monsters, you have just have to follow these steps:
+1. Create a class that extends the DamageEngine abstract class
+2. Override the method calculate
+3. Choose when this new engine should be used in the DamageEngineFactory:
+```java
+    public DamageEngine getInstance(Monster monster) {
+        if (monster instanceof Dragon) {
+            new DragonDamageEngine(this.character, this.monster, this.random, this.output);
+        }
+        return new DefaultDamage(this.character, this.monster, this.random, this.output);
+    }
+```
+4. In this context you have available the character, the monster and the Action chose by the user. You can implement your own rules to calculate damages and behaviors. If you want to enable new Actions, see the section "Creating new Actions", but be aware to not break any legacy engines.
 
 ##### Creating new Text Colors:
-Add a new entrance to the enum "TextColors". The first parameter should be the [color](http://www.lihaoyi.com/post/BuildyourownCommandLinewithANSIescapecodes.html#16-colors) and the second parameter should be a number that represents this color (usually this number is asked to the user when he has to choose between colors).
+Add a new entrance to the enum "TextColors". The first parameter should be the [color](http://www.lihaoyi.com/post/BuildyourownCommandLinewithANSIescapecodes.html#16-colors), the second parameter should be a number that represents this color and the third the description.
+When you add a new color, it is automatically shown in the build profile scene, where the user is asked to pick one color (if you leave the description null it won't be displayed).
 
 ##### Creating new Actions:
 Add a new entrance to the enum "Actions". The first parameter is the name of the action and the second is the key that represents that action.
-If you want this action to cause something different during a battle, you have to implement it's behaviour in the method calculateDamage of the Battle use case.
+When you add a new action, it is automatically shown in the battle scene.
+In the current mechanism, doesn't matter the action selected, it will always have the same behavior. If you want this action to cause something different during a battle, you have to implement it's behaviour in the method calculate of the DamageEngine - see the section "Changing monsters battle engine".
 
 ##### Build:
 For every commit one build is run. If it is succeeded, the runnable jar is automated updated and a new version of the game is released.

@@ -63,7 +63,7 @@ class LoadCharacterSpec extends BaseSpec {
         then: "an error message is displayed"
         screenMessages[0] == "Couldn't find any previously saved game."
         and: "a message saying to press ENTER is displayed"
-        screenMessages[1] == "Press ENTER to go back to the menu..."
+        screenMessages[1] == "Press ENTER to go back to menu..."
         and: "the next scenario returned is Show Menu"
         scenario instanceof ShowMenu
 

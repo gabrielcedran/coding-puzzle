@@ -4,6 +4,7 @@ import br.com.cedran.coding.puzzle.gateway.SaveGateway
 import br.com.cedran.coding.puzzle.model.characters.Character
 import br.com.cedran.coding.puzzle.model.characters.Warrior
 import br.com.cedran.coding.puzzle.model.options.Movements
+import br.com.cedran.coding.puzzle.usecase.battle.Battle
 
 class ExploreSpec extends BaseSpec {
 
