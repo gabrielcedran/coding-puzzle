@@ -7,7 +7,7 @@ after_success:
   - git checkout master
   - git add runnable/freak-island.jar
   - git commit -m "jar generated automatically during the buid \# ${TRAVIS_BUILD_NUMBER} [skip ci]"
-  - git push "https://${GH_TOKEN}@github.com/gabrielcedran/coding-puzzle.git" master
+  - git push "https://${GH_TOKEN}@github.com/gabrielcedran/coding-puzzle.git" master > /dev/null 2>&1
   - git status
 env:
   global:
