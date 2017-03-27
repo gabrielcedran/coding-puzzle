@@ -2,11 +2,8 @@ language: java
 jdk:
   - oraclejdk8
 after_success:
-  - pwd
-  - ls target -la
-  - ls runnable -la
-  - mv target/freak-island.jar runnable/
-  - ls runnable -la
+  - git add runnable/freak-island.jar
+  - git commit -m "teste auto update jar"
   - git status
 env:
   global:
