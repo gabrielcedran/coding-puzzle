@@ -4,11 +4,10 @@ jdk:
 after_success:
   - git config --global user.email "travis@travis-ci.org"
   - git config --global user.name "Travis CI"
-  - git remote add origin https://${GH_TOKEN}@github.com/gabrielcedran/coding-puzzle.git
   - git checkout master
   - git add runnable/freak-island.jar
   - git commit -m "teste auto update jar"
-  - git push
+  - git push "https://${GH_TOKEN}@github.com/gabrielcedran/coding-puzzle.git" master
   - git status
 env:
   global:
