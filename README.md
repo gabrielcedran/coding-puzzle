@@ -69,7 +69,7 @@ When you add a new action, it is automatically shown in the battle scene.
 In the current mechanism, doesn't matter the action selected, it will always have the same behavior. If you want this action to cause something different during a battle, you have to implement it's behaviour in the method calculate of the DamageEngine - see the section [Changing monsters battle engine](https://github.com/gabrielcedran/coding-puzzle#changing-monsters-battle-engine).
 
 ##### Architecture
-This project tries to follow [the clean architecture](https://8thlight.com/blog/uncle-bob/2012/08/13/the-clean-architecture.html) therefore it is layers are splitted in four tiers:
+This project tries to follow [the clean architecture](https://8thlight.com/blog/uncle-bob/2012/08/13/the-clean-architecture.html) therefore its layers are splitted in three tiers:
 1. Models
 2. Use Cases
 3. Gateways
