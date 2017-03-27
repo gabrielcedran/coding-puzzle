@@ -6,7 +6,7 @@ after_success:
   - git config --global user.name "Travis CI"
   - git checkout master
   - git add runnable/freak-island.jar
-  - git commit -m "jar generated automatically during the buid # ${TRAVIS_BUILD_NUMBER} [skip ci]"
+  - git commit -m "jar generated automatically during the buid number ${TRAVIS_BUILD_NUMBER} [skip ci]"
   - git push "https://${GH_TOKEN}@github.com/gabrielcedran/coding-puzzle.git" master > /dev/null 2>&1
 env:
   global:
