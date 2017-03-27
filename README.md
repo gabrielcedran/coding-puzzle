@@ -39,4 +39,5 @@ Add a new entrance to the enum "TextColors". The first parameter should be the [
 Add a new entrance to the enum "Actions". The first parameter is the name of the action and the second is the key that represents that action.
 If you want this action to cause something different during a battle, you have to implement it's behaviour in the method calculateDamage of the Battle use case.
 
-
+##### Build:
+For every commit one build is run. If it is succeeded, the runnable jar is automated updated and a new version of the game is released.
