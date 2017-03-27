@@ -45,7 +45,7 @@ Nowadays, there is only one option of character therefore it is automatically pi
 ```
 
 ##### Changing monsters battle engine:
-If you want to change de default engine battle or even if you want to change the engine of some monsters, you have just have to follow these steps:
+If you want to change de default battle engine or even if you want to change the engine a specific monster, you have just have to follow these steps:
 1. Create a class that extends the DamageEngine abstract class
 2. Override the method calculate
 3. Choose when this new engine should be used in the DamageEngineFactory:
