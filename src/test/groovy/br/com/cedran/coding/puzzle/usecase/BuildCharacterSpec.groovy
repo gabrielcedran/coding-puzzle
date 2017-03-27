@@ -46,9 +46,9 @@ class BuildCharacterSpec extends BaseSpec {
     }
 
     def "Character nickname definition"() {
-        given: "the character a color selected"
+        given: "the character has a color selected"
         character.color = TextColors.BLUE
-        and: "the use will type the nickname 'Cedran'"
+        and: "the player will type the nickname 'Cedran'"
         keyboard.readString() >> "Cedran"
 
         when: "the build character is started"
@@ -61,7 +61,7 @@ class BuildCharacterSpec extends BaseSpec {
         screenMessages[2] == "What about giving it a nickname?"
         and: "the nickname 'Cedran' is set to the character"
         character.name == "Cedran"
-        and: "the uc BuildCharacter is returned"
+        and: "the uc build character is returned"
         useCase instanceof BuildCharacter
     }
 

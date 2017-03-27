@@ -23,7 +23,7 @@ class ExploreSpec extends BaseSpec {
 
     def "Execute explore scenario without previous movement"() {
         given: "There is no previous movement and the user will select the movement 'W'"
-        keyboard.readString() >> "D"
+        keyboard.readString() >> "W"
         and: "the character contains 0 steps"
         character.steps = 0
 
@@ -32,9 +32,9 @@ class ExploreSpec extends BaseSpec {
 
         then: "the character draw is displayed"
         screenMessages[0] == "character drawing"
-        and: "the current number of steps and experience is displayed"
+        and: "the current number of steps and experience are displayed"
         screenMessages[1] == "Number of steps: 0 | Experience: 0"
-        and: "instruction of commands is displayed"
+        and: "instructions of commands is displayed"
         screenMessages[2] == "W - forward | S - backward | A -  left | D - right | Q - Menu"
         and: "the number of steps is increased"
         character.steps == 1l
@@ -53,9 +53,9 @@ class ExploreSpec extends BaseSpec {
         when: "the explore scenario is executed"
         Scenario useCase = exploreScenario.start()
 
-        then: "the character draw is displayed"
+        then: "the character drawing is displayed"
         screenMessages[0] == "character drawing"
-        and: "the current number of steps and experience is displayed"
+        and: "the current number of steps and experience are displayed"
         screenMessages[1] == "Number of steps: 4 | Experience: 0 | Moving " + Movements.FORWARD.getDescription()
         and: "the number of steps is increased"
         character.steps == 5l
@@ -77,13 +77,13 @@ class ExploreSpec extends BaseSpec {
         when: "the explore scenario is executed"
         Scenario useCase = exploreScenario.start()
 
-        then: "the character draw is displayed"
+        then: "the character drawing is displayed"
         screenMessages[0] == "character drawing"
-        and: "the current number of steps and experience is displayed"
+        and: "the current number of steps and experience are displayed"
         screenMessages[1] == "Number of steps: 1000 | Experience: 1 | Moving " + Movements.BACKWARD.getDescription()
         and: "the number of steps is increased"
         character.steps == 1001l
-        and: "the number of experience does change"
+        and: "the number of experience does not change"
         character.experience == 1l
         and: "the next screen returned is explore scenario"
         useCase instanceof Battle
@@ -94,15 +94,15 @@ class ExploreSpec extends BaseSpec {
         exploreScenario.lastMovement = Movements.LEFT
         and: "he will select the key 'D' for the next scene"
         keyboard.readString() >> "D"
-        and: "the character contains 50 steps"
+        and: "the character contains 1000000 steps"
         character.steps = 10000001
 
         when: "the explore scenario is executed"
         Scenario useCase = exploreScenario.start()
 
-        then: "the character draw is displayed"
+        then: "the character drawing is displayed"
         screenMessages[0] == "character drawing"
-        and: "the current number of steps and experience is displayed"
+        and: "the current number of steps and experience are displayed"
         screenMessages[1] == "Number of steps: 10000001 | Experience: 0 | Moving " + Movements.LEFT.getDescription()
         and: "the number of steps is increased"
         character.steps == 10000002l
@@ -121,9 +121,9 @@ class ExploreSpec extends BaseSpec {
         when: "the explore scenario is executed"
         Scenario useCase = exploreScenario.start()
 
-        then: "the character draw is displayed"
+        then: "the character drawing is displayed"
         screenMessages[0] == "character drawing"
-        and: "the current number of steps and experience is displayed"
+        and: "the current number of steps and experience are displayed"
         screenMessages[1] == "Number of steps: 3 | Experience: 0 | Moving " + Movements.RIGHT.getDescription()
         and: "the number of steps isn't increased"
         character.steps == 3l
@@ -142,9 +142,9 @@ class ExploreSpec extends BaseSpec {
         when: "the explore scenario is executed"
         Scenario useCase = exploreScenario.start()
 
-        then: "the character draw is displayed"
+        then: "the character drawing is displayed"
         screenMessages[0] == "character drawing"
-        and: "the current number of steps and experience is displayed"
+        and: "the current number of steps and experience are displayed"
         screenMessages[1] == "Number of steps: 3 | Experience: 0"
         and: "the number of steps isn't increased"
         character.steps == 3l

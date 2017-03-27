@@ -51,13 +51,13 @@ public class KeyboardTest {
 
     @Test
     public void readInvalidIntegerTest() {
-        // GIVEN The user will type 1
+        // GIVEN The user will type A
         when(scanner.next()).thenReturn("A");
 
         // WHEN the keyboard tries to read the input
         Integer input = keyboard.readInteger();
 
-        // THEN the text returned is "Hello"
+        // THEN no text is returned
         assertThat("Number returned", input, nullValue());
     }
 

@@ -24,7 +24,7 @@ class LoadCharacterSpec extends BaseSpec {
         when: "the load character executes"
         Scenario scenario = loadCharacter.start()
 
-        then: "the greeting message is displayed"
+        then: "a greeting message is displayed"
         screenMessages[0] == "Welcome back Cedran"
         and: "a message saying to press ENTER is displayed"
         screenMessages[1] == "Press ENTER start playing again..."
@@ -44,7 +44,7 @@ class LoadCharacterSpec extends BaseSpec {
         when: "the load character executes"
         Scenario scenario = loadCharacter.start()
 
-        then: "the greeting message is displayed"
+        then: "a greeting message is displayed"
         screenMessages[0] == "Welcome back Cedran"
         and: "a message saying to press ENTER is displayed"
         screenMessages[1] == "Press ENTER start playing again..."

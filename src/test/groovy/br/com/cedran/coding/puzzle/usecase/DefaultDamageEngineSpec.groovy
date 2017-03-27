@@ -31,7 +31,7 @@ class DefaultDamageEngineSpec extends BaseSpec {
 
         then: "the life remaining of the monster is decrease in 10 points"
         monster.lifeRemaining == 90l
-        and: "a message displayed the damage cause is printed"
+        and: "a message displaying the damage caused is printed"
         screenMessages[0] == "You caused a damage of 10 points!"
     }
 
@@ -46,7 +46,7 @@ class DefaultDamageEngineSpec extends BaseSpec {
 
         then: "the life remaining of the monster is decrease in 10 points"
         monster.lifeRemaining == 0l
-        and: "a message displayed the damage cause is printed"
+        and: "a message displaying the damage caused is printed"
         screenMessages[0] == "You caused a damage of 10 points!"
     }
 }

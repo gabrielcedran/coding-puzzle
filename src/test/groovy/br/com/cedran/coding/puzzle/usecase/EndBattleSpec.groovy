@@ -25,15 +25,15 @@ class EndBattleSpec extends BaseSpec {
     }
 
     def "End battle"() {
-        given: "the user just defeated a monster that gives 4 points of experience"
+        given: "the player has just defeated a monster that gives 4 points of experience"
         monster.getExperience() >> 4l
-        and: "the user has 2 points of experience"
+        and: "the player has 2 points of experience"
         character.experience = 2l
 
         when: "the end battle is executed"
         Scenario scenario = endBattle.start()
 
-        then: "the points of experience of the user increase"
+        then: "the points of experience of the user is increased"
         character.experience == 6l
         and: "a congratulation is displayed"
         screenMessages[0] == "Congrats!"

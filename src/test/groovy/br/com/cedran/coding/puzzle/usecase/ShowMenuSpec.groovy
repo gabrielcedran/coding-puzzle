@@ -10,7 +10,7 @@ class ShowMenuSpec extends BaseSpec {
     }
 
     def "Test menu messages"() {
-        given: "the show menu use case is instantiated and the user will select option 1 - "
+        given: "the show menu use case is instantiated and the user will select option 1 - New Game"
         keyboard.readInteger() >> 1
 
         when: "show menu executes"
@@ -20,11 +20,11 @@ class ShowMenuSpec extends BaseSpec {
         screenMessages[0] == "Freak Island Logo"
         and: "a greeting message is displayed"
         screenMessages[1] == "The place where you meet creatures that you've never imagined before!"
-        and: "the option new game"
+        and: "the option new game is displayed"
         screenMessages[2] == "1- New Game"
-        and: "the option load game"
+        and: "the option load game is displayed"
         screenMessages[3] == "2- Load Game"
-        and: "the option exit"
+        and: "the option exit is displayed"
         screenMessages[4] == "3- Exit"
 
     }

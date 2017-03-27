@@ -32,11 +32,11 @@ class BattleSpec extends BaseSpec {
     }
 
     def "Beginning of a battle"() {
-        given: "The battle's just begun and there isn't a monster selected"
+        given: "the battle's just begun and there isn't a monster selected"
         battle.monster = null
         and: "the monster factory will return a dragon"
         monsterFactory.getMonster() >> monster
-        and: "there isn't an action"
+        and: "there isn't an action selected yet"
         battle.action = null
         and: "the user will type A - for attack"
         keyboard.readString() >> 'A'
@@ -67,13 +67,13 @@ class BattleSpec extends BaseSpec {
         given: "the battle is going on and monster have full life"
         monster.lifeRemaining = 100l
         battle.monster = monster
-        and: "and it's time to the monster make some impressions"
+        and: "it's time to the monster make some impressions"
         random.nextInt(_) >> 1
         and: "there user selected the option Attack in the previous round"
         battle.action = Actions.ATTACK
         and: "the demage caused by that attack is 10"
         random.nextInt(_) >> 10
-        and: "the user will type A - for attack again"
+        and: "the user will type A - to attack again"
         keyboard.readString() >> 'A'
 
         when: "the scenario executes"
@@ -81,7 +81,7 @@ class BattleSpec extends BaseSpec {
 
         then: "the picture of the monster is printed"
         screenMessages[0] == "dragon picture"
-        and: "a message displayed the damage cause is printed"
+        and: "a message displaying the monster noise is displayed"
         screenMessages[1] == "${monster.noise}"
         and: "the next scenario is still the battle"
         scenario instanceof Battle
@@ -93,7 +93,7 @@ class BattleSpec extends BaseSpec {
         battle.monster = monster
         and: "there user selected the option Attack in the previous round"
         battle.action = Actions.ATTACK
-        and: "the demage caused by that attack is 10"
+        and: "the damage caused by that attack is 10"
         random.nextInt(_) >> 10
         and: "the user will type A - for attack again"
         keyboard.readString() >> 'A'
@@ -105,7 +105,7 @@ class BattleSpec extends BaseSpec {
         monster.getLifeRemaining() == 90l
         and: "the picture of the monster is printed"
         screenMessages[0] == "dragon picture"
-        and: "a message displayed the damage cause is printed"
+        and: "a message displaying the damage caused is printed"
         screenMessages[1] == "You caused a damage of 10 points!"
         and: "the life of the monster is printed"
         screenMessages[2] == "Dragon's Life [${monster.lifeRemaining}/${monster.life}]"
@@ -124,7 +124,7 @@ class BattleSpec extends BaseSpec {
         battle.monster = monster
         and: "there user selected the option Attack in the previous round"
         battle.action = Actions.ATTACK
-        and: "the demage caused by that attack is 5"
+        and: "the damage caused by that attack is 5"
         random.nextInt(_) >> 5
         and: "the user will type A - for attack again"
         keyboard.readString() >> 'A'
@@ -136,7 +136,7 @@ class BattleSpec extends BaseSpec {
         monster.getLifeRemaining() == 0l
         and: "the picture of the monster is printed"
         screenMessages[0] == "dragon picture"
-        and: "a message displayed the damage cause is printed"
+        and: "a message displaying the damage caused is printed"
         screenMessages[1] == "You caused a damage of 5 points!"
         and: "the life of the monster is printed"
         screenMessages[2] == "Dragon's Life [0/${monster.life}]"
@@ -154,7 +154,7 @@ class BattleSpec extends BaseSpec {
         battle.monster = monster
         and: "there user selected the option Attack in the previous round"
         battle.action = Actions.ATTACK
-        and: "the demage caused by that attack is 10"
+        and: "the damage caused by that attack is 10"
         random.nextInt(_) >> 10
         and: "the user will type A - for attack again"
         keyboard.readString() >> 'A'
@@ -166,7 +166,7 @@ class BattleSpec extends BaseSpec {
         monster.getLifeRemaining() == 0l
         and: "the picture of the monster is printed"
         screenMessages[0] == "dragon picture"
-        and: "a message displayed the damage cause is printed"
+        and: "a message displaying the damage cause is printed"
         screenMessages[1] == "You caused a damage of 10 points!"
         and: "the life of the monster is printed"
         screenMessages[2] == "Dragon's Life [0/${monster.life}]"
