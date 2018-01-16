@@ -13,7 +13,7 @@ import br.com.cedran.coding.puzzle.usecase.battle.EndBattle
 
 class BattleSpec extends BaseSpec {
 
-    Battle battl
+    Battle battle
     Character character
     Random random
     Monster monster
